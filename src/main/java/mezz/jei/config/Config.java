@@ -569,7 +569,7 @@ public final class Config {
 		}
 	}
 
-	public static <V> void addIngredientToConfigBlacklist(IngredientFilter ingredientFilter, IIngredientRegistry ingredientRegistry, V ingredient, IngredientBlacklistType blacklistType, IIngredientHelper<V> ingredientHelper) {
+	public static <V> void addIngredientToConfigBlacklist(IngredientFilter<V> ingredientFilter, IIngredientRegistry ingredientRegistry, V ingredient, IngredientBlacklistType blacklistType, IIngredientHelper<V> ingredientHelper) {
 		IIngredientType<V> ingredientType = ingredientRegistry.getIngredientType(ingredient);
 		IIngredientListElement<V> element = IngredientListElementFactory.createUnorderedElement(ingredientRegistry, ingredientType, ingredient, ForgeModIdHelper.getInstance());
 		Preconditions.checkNotNull(element, "Failed to create element for blacklist");
@@ -590,7 +590,7 @@ public final class Config {
 		}
 	}
 
-	private static <V> boolean addIngredientToConfigBlacklist(IngredientFilter ingredientFilter, IIngredientListElement<V> element, V ingredient, IngredientBlacklistType blacklistType, IIngredientHelper<V> ingredientHelper) {
+	private static <V> boolean addIngredientToConfigBlacklist(IngredientFilter<V> ingredientFilter, IIngredientListElement<V> element, V ingredient, IngredientBlacklistType blacklistType, IIngredientHelper<V> ingredientHelper) {
 		boolean updated = false;
 
 		// remove lower-level blacklist entries when a higher-level one is added
@@ -617,7 +617,7 @@ public final class Config {
 		return true;
 	}
 
-	public static <V> void removeIngredientFromConfigBlacklist(IngredientFilter ingredientFilter, IIngredientRegistry ingredientRegistry, V ingredient, IngredientBlacklistType blacklistType, IIngredientHelper<V> ingredientHelper) {
+	public static <V> void removeIngredientFromConfigBlacklist(IngredientFilter<V> ingredientFilter, IIngredientRegistry ingredientRegistry, V ingredient, IngredientBlacklistType blacklistType, IIngredientHelper<V> ingredientHelper) {
 		IIngredientType<V> ingredientType = ingredientRegistry.getIngredientType(ingredient);
 		IIngredientListElement<V> element = IngredientListElementFactory.createUnorderedElement(ingredientRegistry, ingredientType, ingredient, ForgeModIdHelper.getInstance());
 		Preconditions.checkNotNull(element, "Failed to create element for blacklist");

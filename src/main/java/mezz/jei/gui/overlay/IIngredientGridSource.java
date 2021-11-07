@@ -4,8 +4,8 @@ import java.util.List;
 
 import mezz.jei.gui.ingredients.IIngredientListElement;
 
-public interface IIngredientGridSource {
-	List<IIngredientListElement> getIngredientList();
+public interface IIngredientGridSource<V> {
+	List<IIngredientListElement<V>> getIngredientList();
 
 	int size();
 

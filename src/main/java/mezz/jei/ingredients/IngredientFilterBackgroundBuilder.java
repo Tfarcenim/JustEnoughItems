@@ -14,11 +14,11 @@ import mezz.jei.config.Config;
 import mezz.jei.gui.ingredients.IIngredientListElement;
 import mezz.jei.suffixtree.GeneralizedSuffixTree;
 
-public class IngredientFilterBackgroundBuilder {
+public class IngredientFilterBackgroundBuilder<V> {
 	private final Char2ObjectMap<PrefixedSearchTree> prefixedSearchTrees;
-	private final NonNullList<IIngredientListElement> elementList;
+	private final NonNullList<IIngredientListElement<V>> elementList;
 
-	public IngredientFilterBackgroundBuilder(Char2ObjectMap<PrefixedSearchTree> prefixedSearchTrees, NonNullList<IIngredientListElement> elementList) {
+	public IngredientFilterBackgroundBuilder(Char2ObjectMap<PrefixedSearchTree> prefixedSearchTrees, NonNullList<IIngredientListElement<V>> elementList) {
 		this.prefixedSearchTrees = prefixedSearchTrees;
 		this.elementList = elementList;
 	}

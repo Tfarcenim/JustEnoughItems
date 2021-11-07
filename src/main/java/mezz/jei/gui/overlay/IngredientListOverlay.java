@@ -31,7 +31,7 @@ import mezz.jei.input.IShowsRecipeFocuses;
 import mezz.jei.util.CommandUtil;
 import mezz.jei.util.Log;
 
-public class IngredientListOverlay implements IIngredientListOverlay, IMouseHandler, IShowsRecipeFocuses {
+public class IngredientListOverlay<V> implements IIngredientListOverlay, IMouseHandler, IShowsRecipeFocuses {
 	private static final int BORDER_PADDING = 2;
 	private static final int BUTTON_SIZE = 20;
 	private static final int SEARCH_HEIGHT = 20;
@@ -42,11 +42,11 @@ public class IngredientListOverlay implements IIngredientListOverlay, IMouseHand
 			guiProperties.getGuiTop() + guiProperties.getGuiYSize() + SEARCH_HEIGHT < guiProperties.getScreenHeight();
 	}
 
-	private final IngredientFilter ingredientFilter;
+	private final IngredientFilter<V> ingredientFilter;
 	private final GuiIconToggleButton configButton;
 	private final IngredientGridWithNavigation contents;
 	private final GuiScreenHelper guiScreenHelper;
-	private final GuiTextFieldFilter searchField;
+	private final GuiTextFieldFilter<V> searchField;
 	private final GhostIngredientDragManager ghostIngredientDragManager;
 	private Rectangle displayArea = new Rectangle();
 
@@ -60,7 +60,7 @@ public class IngredientListOverlay implements IIngredientListOverlay, IMouseHand
 
 		this.contents = new IngredientGridWithNavigation(ingredientFilter, guiScreenHelper, GridAlignment.LEFT);
 		ingredientFilter.addListener(() -> onSetFilterText(Config.getFilterText()));
-		this.searchField = new GuiTextFieldFilter(0, ingredientFilter);
+		this.searchField = new GuiTextFieldFilter<>(0, ingredientFilter);
 		this.configButton = ConfigButton.create(this);
 		this.ghostIngredientDragManager = new GhostIngredientDragManager(this.contents, guiScreenHelper, ingredientRegistry);
 		this.setKeyboardFocus(false);

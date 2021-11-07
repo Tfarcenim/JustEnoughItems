@@ -18,18 +18,18 @@ import mezz.jei.gui.ingredients.IIngredientListElement;
 import mezz.jei.ingredients.IngredientFilter;
 import org.lwjgl.input.Keyboard;
 
-public class GuiTextFieldFilter extends GuiTextField {
+public class GuiTextFieldFilter<V> extends GuiTextField {
 	private static final int MAX_HISTORY = 100;
 	private static final int maxSearchLength = 128;
 	private static final List<String> history = new LinkedList<>();
 
 	private final HoverChecker hoverChecker;
-	private final IngredientFilter ingredientFilter;
+	private final IngredientFilter<V> ingredientFilter;
 	private boolean previousKeyboardRepeatEnabled;
 
 	private final DrawableNineSliceTexture background;
 
-	public GuiTextFieldFilter(int componentId, IngredientFilter ingredientFilter) {
+	public GuiTextFieldFilter(int componentId, IngredientFilter<V> ingredientFilter) {
 		super(componentId, Minecraft.getMinecraft().fontRenderer, 0, 0, 0, 0);
 
 		setMaxStringLength(maxSearchLength);
@@ -53,7 +53,7 @@ public class GuiTextFieldFilter extends GuiTextField {
 		if (!filterText.equals(getText())) {
 			setText(filterText);
 		}
-		List<IIngredientListElement> ingredientList = ingredientFilter.getIngredientList();
+		List<IIngredientListElement<V>> ingredientList = ingredientFilter.getIngredientList();
 		if (ingredientList.size() == 0) {
 			setTextColor(Color.red.getRGB());
 		} else {
